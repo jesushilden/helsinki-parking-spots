@@ -12,14 +12,14 @@ class MapContainer extends Component {
         infoCurrent: "?"
     };
 
-    hover = (paths) => {
-        if(paths.coordinates[0]){
+    hover = (area) => {
+        if(area.coordinates[0]){
             this.setState({
                 showingInfoWindow: true,
-                lngInfo: paths.coordinates[0].lng,
-                latInfo: paths.coordinates[0].lat,
-                infoCapacity: paths.capacity_estimate ? paths.capacity_estimate : "?",
-                infoCurrent: paths.current_parking_count,
+                lngInfo: area.coordinates[0].lng,
+                latInfo: area.coordinates[0].lat,
+                infoCapacity: area.capacity_estimate ? area.capacity_estimate : "?",
+                infoCurrent: area.current_parking_count,
             })
         } else {
             this.setState({showingInfoWindow: true})
@@ -37,6 +37,22 @@ class MapContainer extends Component {
         </div>)
     }
 
+    calculateColor = (area) => {
+        
+        if(!area.capacity_estimate){
+            return "#CCCC00"
+        }
+
+        const ratio = area.current_parking_count/area.capacity_estimate;
+        if(ratio > 0.75){
+            return "#CD0000"
+        } else {
+            return "#008000"
+        }
+        
+        
+    }
+
     render() {
         return (
             <Map
@@ -52,10 +68,10 @@ class MapContainer extends Component {
                     <Polygon
                         key={area.id}
                         paths={area.coordinates}
-                        strokeColor="#0000FF"
+                        strokeColor={this.calculateColor(area)}
                         strokeOpacity={0.8}
                         strokeWeight={2}
-                        fillColor="#0000FF"
+                        fillColor={this.calculateColor(area)}
                         fillOpacity={0.35}
                         onMouseover={() => this.hover(area)}
                         onMouseout={this.unhover} />
