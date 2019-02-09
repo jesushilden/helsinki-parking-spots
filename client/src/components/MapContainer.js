@@ -23,8 +23,8 @@ class MapContainer extends Component {
         if (area.coordinates[0]) {
             this.setState({
                 showingInfoWindow: true,
-                lngInfo: area.coordinates[0].long,
-                latInfo: area.coordinates[0].lat,
+                lngInfo: area.coordinates[0].lat, //hups XD
+                latInfo: area.coordinates[0].long,
                 infoCapacity: area.capacityEstimate ? area.capacityEstimate : "?",
                 infoCurrent: area.currentParkingCount,
             })
@@ -81,8 +81,8 @@ class MapContainer extends Component {
                 lat: 0,
                 lng: 0
             }
-            new_cor.lat = c.lat
-            new_cor.lng = c.long
+            new_cor.lat = c.long //hups XD
+            new_cor.lng = c.lat 
             return new_cor
         })
     }
