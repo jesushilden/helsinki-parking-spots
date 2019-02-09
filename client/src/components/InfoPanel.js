@@ -6,7 +6,7 @@ const InfoPanel = ({ visible, toggle }) => {
         return (
             <div style={infoPanelStyles}>
                 <div style={contentContainer}>
-                    <div style={headerStyle}>Onko tilaa</div>
+                    <div style={headerStyle}>OpenPark</div>
                     <div style={kayttoohjeetHeaderStyle}>Käyttöohjeet</div>
                     <div style={kayttoohjeStyle}>Klickaa sijaintia jossa haluat parkkeerata.</div>
                     <div style={kayttoohjeStyle}>Alueet missä saa pysäköidä näkyvät eri värisinä alueina.</div>
