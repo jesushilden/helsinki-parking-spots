@@ -5,21 +5,21 @@ const sequelize = new Sequelize(null, null, null, {
 	storage: './db/parking.db',
 });
 
-const Areas = sequelize.define('parkingareas', {
+const Area = sequelize.define('parkingareas', {
 	areaId: Sequelize.STRING,
 	capacity: Sequelize.INTEGER,
 });
 
-const Polygons = sequelize.define('polygons', {
+const Coordinate = sequelize.define('coordinates', {
 	areaId: Sequelize.STRING,
 	lat: Sequelize.FLOAT,
 	long: Sequelize.FLOAT,
 });
 
-Areas.sync();
-Polygons.sync();
+Area.sync();
+Coordinate.sync();
 
 module.exports = {
-	Areas,
-	Polygons,
+	Area,
+	Coordinate,
 };

@@ -3,7 +3,7 @@ const request = util.promisify(require("request"));
 const _ = require("lodash");
 const axios = require('axios');
 
-const { Areas, Polygons } = require('./models');
+const { Area, Coordinate } = require('./models');
 
 const PARKING_AREA_URL = "https://pubapi.parkkiopas.fi/public/v1/parking_area/";
 
@@ -28,7 +28,7 @@ async function setUpParkingData() {
 					long,
 				};
 			});
-			Polygons.bulkCreate(parsedCoordinates);
+			Coordinate.bulkCreate(parsedCoordinates);
 		});
 		url = next;
   }
