@@ -23,10 +23,10 @@ class MapContainer extends Component {
         if (area.coordinates[0]) {
             this.setState({
                 showingInfoWindow: true,
-                lngInfo: area.coordinates[0].lng,
+                lngInfo: area.coordinates[0].long,
                 latInfo: area.coordinates[0].lat,
-                infoCapacity: area.capacity_estimate ? area.capacity_estimate : "?",
-                infoCurrent: area.current_parking_count,
+                infoCapacity: area.capacityEstimate ? area.capacityEstimate : "?",
+                infoCurrent: area.currentParkingCount,
             })
         } else {
             this.setState({ showingInfoWindow: true })
@@ -46,11 +46,11 @@ class MapContainer extends Component {
 
     calculateColor = (area) => {
 
-        if (!area.capacity_estimate) {
+        if (!area.capacityEstimate) {
             return "#CCCC00" //yellow
         }
 
-        const ratio = area.current_parking_count / area.capacity_estimate;
+        const ratio = area.currentParkingCount / area.capacityEstimate;
         if (ratio === 1) {
             return "#CD0000" //red
         } else if(ratio > 0.5){
