@@ -72,6 +72,18 @@ class MapContainer extends Component {
         
     }
 
+    fixLong(coordinates) {
+        return coordinates.map(c => {
+            let new_cor = {
+                lat: 0,
+                lng: 0
+            }
+            new_cor.lat = c.lat
+            new_cor.lng = c.long
+            return new_cor
+        })
+    }
+
     render() {
 
         return (
@@ -86,7 +98,7 @@ class MapContainer extends Component {
                 {this.props.areas.map(area =>
                     <Polygon
                         key={area.areaId}
-                        paths={area.coordinates}
+                        paths={this.fixLong(area.coordinates)}
                         strokeColor={this.calculateColor(area)}
                         strokeOpacity={0.8}
                         strokeWeight={2}
