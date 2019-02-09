@@ -2,11 +2,7 @@ const Sequelize = require("sequelize");
 const { Area, Coordinate } = require("./models");
 const Op = Sequelize.Op;
 
-const targetLat = 24.9509534809651;
-const targetLong = 60.1715206476324;
-const distance = 0.001;
-
-const getCoordinates = async () => {
+const getCoordinates = async (targetLat, targetLong, distance) => {
   const areaIds = await Coordinate.findAll({
     attributes: ["areaId"],
     group: "areaId",
