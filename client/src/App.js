@@ -1,8 +1,19 @@
 import React, { Component } from 'react'
+import MapContainer from "./components/MapContainer"
 
 import parkingService from './services/parkingService'
 
 class App extends Component {
+<<<<<<< HEAD
+  render() {
+    return (
+      <div className="container">
+        Hello world!
+        <MapContainer></MapContainer>
+      </div>
+    )
+  }
+=======
 
     constructor(props) {
         super(props)
@@ -26,6 +37,7 @@ class App extends Component {
             </div>
         )
     }
+>>>>>>> 82e573a14622d355f615293d967b6b5205640c50
 }
 
 export default App
