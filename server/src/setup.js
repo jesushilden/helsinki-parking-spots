@@ -16,6 +16,11 @@ async function setUpParkingData() {
     const { next, features } = data;
     features.forEach(feature => {
       const areaId = feature.id;
+			const capacity = feature.properties.capacity_estimate;
+			Area.create({
+				areaId,
+				capacity,
+			});
       const { coordinates } = feature.geometry;
       const flatCoordinates = _.flattenDepth(coordinates, 2);
       const parsedCoordinates = flatCoordinates.map(coordinatePair => {
