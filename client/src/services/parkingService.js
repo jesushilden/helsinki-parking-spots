@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const areas = [
     {
         areaId: 'ef44a2eb-57ad-4889-bc38-c713fc2d59e2',
@@ -63,9 +65,12 @@ const areas = [
     }
 ]
 
-const getAreas = () => {
-    return areas
-}   
+const getAreas = async () => {
+			const response = await axios.get(`http://localhost:3001/api/v1/parking-areas?latCoordinate=24.953214703061235&longCoordinate=60.17155457866733&distance=0.001`);
+	console.log(response.data);
+	console.log(areas);
+	return response.data;
+}
 
 const getAreasCloseTo = (lng, lat) => {
     return areas

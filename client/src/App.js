@@ -14,8 +14,8 @@ class App extends Component {
         }
     }
 
-    componentDidMount() {
-        const areas = parkingService.getAreas()
+    async componentDidMount() {
+        const areas = await parkingService.getAreas()
 
         this.setState({
             areas
