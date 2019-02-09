@@ -60,6 +60,30 @@ class MapContainer extends Component {
 
     }
 
+    mapClicked(mapProps, map, clickEvent) {
+        
+        console.log(clickEvent.latLng.lat())
+        console.log(clickEvent.latLng.lng())
+        this.setState({center:
+            {
+            lng: clickEvent.latLng.lng(),
+            lat: clickEvent.latLng.lat()}
+        })
+        
+    }
+
+    fixLong(coordinates) {
+        return coordinates.map(c => {
+            let new_cor = {
+                lat: 0,
+                lng: 0
+            }
+            new_cor.lat = c.lat
+            new_cor.lng = c.long
+            return new_cor
+        })
+    }
+
     render() {
 
         return (
@@ -68,18 +92,21 @@ class MapContainer extends Component {
                 zoom={18}
                 style={mapStyles}
                 initialCenter={this.state.center}
+                onClick={(mapProps, map, clickEvent) => this.mapClicked(mapProps, map, clickEvent)}
+                center={this.state.center}
             >
                 {this.props.areas.map(area =>
                     <Polygon
                         key={area.areaId}
-                        paths={area.coordinates}
+                        paths={this.fixLong(area.coordinates)}
                         strokeColor={this.calculateColor(area)}
                         strokeOpacity={0.8}
                         strokeWeight={2}
                         fillColor={this.calculateColor(area)}
                         fillOpacity={0.35}
                         onMouseover={() => this.hover(area)}
-                        onMouseout={this.unhover} />
+                        onMouseout={this.unhover}
+                     />
                 )}
                 <InfoWindow
                     position={{
@@ -98,7 +125,8 @@ class MapContainer extends Component {
 
 const mapStyles = {
     width: '100%',
-    height: '100%'
+    height: '100%',
+    clickable: true
 }
 
 export default GoogleApiWrapper({
