@@ -22,6 +22,14 @@ class App extends Component {
         })
     }
 
+    updateAreas = async (lng, lat) => {
+        const areas = await parkingService.getAreasCloseTo(lat, lng)
+        console.log(areas)
+        this.setState({
+            areas
+        })
+    }
+
     toggleInfoPanel = () => {
         this.setState({infoPanel: !this.state.infoPanel})
     }
@@ -30,7 +38,7 @@ class App extends Component {
         return (
             <div className="container">
                 <InfoPanel visible={this.state.infoPanel} toggle={this.toggleInfoPanel}/>
-                <MapContainer areas={this.state.areas}></MapContainer>
+                <MapContainer areas={this.state.areas} updateAreas={this.updateAreas}></MapContainer>
             </div>
         )
     }

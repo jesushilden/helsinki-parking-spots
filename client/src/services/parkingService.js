@@ -66,14 +66,17 @@ const areas = [
 ]
 
 const getAreas = async () => {
-			const response = await axios.get(`http://localhost:3001/api/v1/parking-areas?latCoordinate=24.953214703061235&longCoordinate=60.17155457866733&distance=0.1`);
+    const distance = '0.005';
+	const response = await axios.get(`http://localhost:3001/api/v1/parking-areas?latCoordinate=24.953214703061235&longCoordinate=60.17155457866733&distance=${distance}`);
 	console.log(response.data);
 	console.log(areas);
 	return response.data;
 }
 
-const getAreasCloseTo = (lng, lat) => {
-    return areas
+const getAreasCloseTo = async (lng, lat) => {
+    const distance = '0.005';
+    const response = await axios.get(`http://localhost:3001/api/v1/parking-areas?latCoordinate=${lat}&longCoordinate=${lng}&distance=${distance}`)
+    return response.data
 }
 
 export default { getAreas, getAreasCloseTo }

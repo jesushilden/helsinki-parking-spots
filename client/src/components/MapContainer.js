@@ -53,7 +53,7 @@ class MapContainer extends Component {
         const ratio = area.currentParkingCount / area.capacityEstimate;
         if (ratio === 1) {
             return "#CD0000" //red
-        } else if(ratio > 0.5){
+        } else if (ratio > 0.5) {
             return "#CCCC00" //yellow
         }
         else {
@@ -64,15 +64,18 @@ class MapContainer extends Component {
     }
 
     mapClicked(mapProps, map, clickEvent) {
-        
-        console.log(clickEvent.latLng.lat())
-        console.log(clickEvent.latLng.lng())
-        this.setState({center:
-            {
-            lng: clickEvent.latLng.lng(),
-            lat: clickEvent.latLng.lat()}
+        const lat = clickEvent.latLng.lat()
+        const lng = clickEvent.latLng.lng()
+        console.log(lat)
+        console.log(lng)
+        this.props.updateAreas(lng, lat)
+        this.setState({
+            center: {
+                lng,
+                lat
+            }
         })
-        
+
     }
 
     fixLong(coordinates) {
@@ -82,7 +85,7 @@ class MapContainer extends Component {
                 lng: 0
             }
             new_cor.lat = c.long //hups XD
-            new_cor.lng = c.lat 
+            new_cor.lng = c.lat
             return new_cor
         })
     }
@@ -109,7 +112,7 @@ class MapContainer extends Component {
                         fillOpacity={0.35}
                         onMouseover={() => this.hover(area)}
                         onMouseout={this.unhover}
-                     />
+                    />
                 )}
                 <InfoWindow
                     position={{
