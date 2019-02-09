@@ -26,11 +26,14 @@ const getCoordinates = async (targetLat, targetLong, distance) => {
         },
         raw: true
       });
+      const { capacity, currentParkingCount } = await Area.findOne({
+        where: { areaId }
+      });
       return {
         areaId,
         coordinates,
-        capacityEstimate: null,
-        currentParkingCount: null
+        capacityEstimate: capacity,
+        currentParkingCount
       };
     })
   );

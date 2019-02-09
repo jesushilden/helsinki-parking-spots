@@ -1,9 +1,12 @@
 //@ts-check
 const express = require("express");
 const { getCoordinates } = require("./databaserequests");
+const cors = require("cors");
 
 const app = express();
 const port = 3001;
+
+app.use(cors());
 
 app.get("/api/v1/parking-areas", async (req, res) => {
   try {
