@@ -1,6 +1,8 @@
 const express = require("express");
 const util = require("util");
-const request = util.promisify(require("request"));
+const sequelize = require("sequelize");
+const { Area, Coordinate } = require("./models");
+const { getCoordinates } = require("./databaserequests");
 
 const app = express();
 const port = 3000;
@@ -9,8 +11,7 @@ const PARKING_AREA_URL = "https://pubapi.parkkiopas.fi/public/v1/parking_area/";
 
 app.get("/api/v1/parking-areas", async (req, res) => {
   try {
-    // TODO: Get data from database
-    const data = await getParkinAreas();
+    const data = await getCoordinates();
     res.send(data);
   } catch (err) {
     console.log(err);
