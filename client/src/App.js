@@ -23,7 +23,7 @@ class App extends Component {
     render() {
         return (
             <div className="container">
-                <MapContainer></MapContainer>
+                <MapContainer areas={this.state.areas}></MapContainer>
             </div>
         )
     }
