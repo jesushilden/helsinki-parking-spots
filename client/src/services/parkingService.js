@@ -1,6 +1,6 @@
 const areas = [
     {
-        id: 'ef44a2eb-57ad-4889-bc38-c713fc2d59e2',
+        areaId: 'ef44a2eb-57ad-4889-bc38-c713fc2d59e2',
         coordinates: [
             {
                 lng: 24.95095348096506,
@@ -31,7 +31,7 @@ const areas = [
         current_parking_count: 5,
     },
     {
-        id: '5e9398b9-0b55-4e12-8376-3246d7f6bbba',
+        areaId: '5e9398b9-0b55-4e12-8376-3246d7f6bbba',
         coordinates: [
             {
                 lng: 24.952267526407198,

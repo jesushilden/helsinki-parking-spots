@@ -1,19 +1,26 @@
-import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, Polygon, InfoWindow } from 'google-maps-react';
-import { ENV } from "../environment";
+import React, { Component } from 'react'
+import { Map, GoogleApiWrapper, Polygon, InfoWindow } from 'google-maps-react'
+import { ENV } from "../environment"
 
 class MapContainer extends Component {
 
-    state = {
-        showingInfoWindow: false,
-        lngInfo: 24.953118143536688,
-        latInfo: 60.17153323236579,
-        infoCapacity: "?",
-        infoCurrent: "?"
-    };
+    constructor(props) {
+        super(props)
+        this.state = {
+            showingInfoWindow: false,
+            lngInfo: 24.953118143536688,
+            latInfo: 60.17153323236579,
+            infoCapacity: "?",
+            infoCurrent: "?",
+            center: {
+                lng: 24.953118143536688,
+                lat: 60.17153323236579
+            }
+        }
+    }
 
     hover = (area) => {
-        if(area.coordinates[0]){
+        if (area.coordinates[0]) {
             this.setState({
                 showingInfoWindow: true,
                 lngInfo: area.coordinates[0].lng,
@@ -22,51 +29,49 @@ class MapContainer extends Component {
                 infoCurrent: area.current_parking_count,
             })
         } else {
-            this.setState({showingInfoWindow: true})
+            this.setState({ showingInfoWindow: true })
         }
-        
+
     }
 
     unhover = () => {
-        this.setState({showingInfoWindow: false})
+        this.setState({ showingInfoWindow: false })
     }
 
     infoText = () => {
-        return(<div>
+        return (<div>
             <h1>{this.state.infoCurrent}/{this.state.infoCapacity}</h1>
         </div>)
     }
 
     calculateColor = (area) => {
-        
-        if(!area.capacity_estimate){
+
+        if (!area.capacity_estimate) {
             return "#CCCC00"
         }
 
-        const ratio = area.current_parking_count/area.capacity_estimate;
-        if(ratio > 0.75){
+        const ratio = area.current_parking_count / area.capacity_estimate;
+        if (ratio > 0.75) {
             return "#CD0000"
         } else {
             return "#008000"
         }
-        
-        
+
+
     }
 
     render() {
+
         return (
             <Map
                 google={this.props.google}
                 zoom={18}
                 style={mapStyles}
-                initialCenter={{
-                    lng: 24.953118143536688,
-                    lat: 60.17153323236579
-                }}
+                initialCenter={this.state.center}
             >
                 {this.props.areas.map(area =>
                     <Polygon
-                        key={area.id}
+                        key={area.areaId}
                         paths={area.coordinates}
                         strokeColor={this.calculateColor(area)}
                         strokeOpacity={0.8}
@@ -94,8 +99,8 @@ class MapContainer extends Component {
 const mapStyles = {
     width: '100%',
     height: '100%'
-};
+}
 
 export default GoogleApiWrapper({
     apiKey: ENV.APIKEY
-})(MapContainer);
+})(MapContainer)
