@@ -63,7 +63,7 @@ const areas = [
 
 const getAreas = () => {
     return areas
-}
+}   
 
 const getAreasCloseTo = (lon, lat) => {
     return areas
