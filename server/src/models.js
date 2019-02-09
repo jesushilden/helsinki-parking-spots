@@ -1,31 +1,26 @@
-const Sequelize = require('sequelize');
+const Sequelize = require("sequelize");
+const path = require("path");
 
 const sequelize = new Sequelize(null, null, null, {
-	dialect: 'sqlite',
-	storage: './db/parking.db',
+  dialect: "sqlite",
+  storage: path.resolve(__dirname, "db/parking.db")
 });
 
-const Areas = sequelize.define('parkingareas', {
-	id: {
-		type: Sequelize.STRING,
-		primaryKey: true,
-	},
-	capacity: Sequelize.INTEGER,
+const Area = sequelize.define("parkingareas", {
+  areaId: Sequelize.STRING,
+  capacity: Sequelize.INTEGER
 });
 
-const Polygons = sequelize.define('polygons', {
-	id: {
-		type: Sequelize.STRING,
-		primaryKey: true,
-	},
-	lat: Sequelize.FLOAT,
-	long: Sequelize.FLOAT,
+const Coordinate = sequelize.define("coordinates", {
+  areaId: Sequelize.STRING,
+  lat: Sequelize.FLOAT,
+  long: Sequelize.FLOAT
 });
 
-Areas.sync();
-Polygons.sync();
+Area.sync();
+Coordinate.sync();
 
 module.exports = {
-	Areas,
-	Polygons,
+  Area,
+  Coordinate
 };

@@ -27,7 +27,8 @@ const areas = [
                 lat: 60.171520647632406
             }
         ],
-        capacity_estimate: 10
+        capacity_estimate: 10,
+        current_parking_count: 5,
     },
     {
         areaId: '5e9398b9-0b55-4e12-8376-3246d7f6bbba',
@@ -57,7 +58,8 @@ const areas = [
                 lat: 60.17150364378772
             }
         ],
-        capacity_estimate: null
+        capacity_estimate: null,
+        current_parking_count: 10
     }
 ]
 
