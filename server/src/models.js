@@ -8,7 +8,8 @@ const sequelize = new Sequelize(null, null, null, {
 
 const Area = sequelize.define("parkingareas", {
   areaId: Sequelize.STRING,
-  capacity: Sequelize.INTEGER
+  capacity: Sequelize.INTEGER,
+  currentParkingCount: Sequelize.INTEGER
 });
 
 const Coordinate = sequelize.define("coordinates", {
