@@ -6,18 +6,12 @@ const sequelize = new Sequelize(null, null, null, {
 });
 
 const Areas = sequelize.define('parkingareas', {
-	id: {
-		type: Sequelize.STRING,
-		primaryKey: true,
-	},
+	areaId: Sequelize.STRING,
 	capacity: Sequelize.INTEGER,
 });
 
 const Polygons = sequelize.define('polygons', {
-	id: {
-		type: Sequelize.STRING,
-		primaryKey: true,
-	},
+	areaId: Sequelize.STRING,
 	lat: Sequelize.FLOAT,
 	long: Sequelize.FLOAT,
 });
