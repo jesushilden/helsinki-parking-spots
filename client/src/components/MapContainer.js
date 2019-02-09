@@ -47,14 +47,17 @@ class MapContainer extends Component {
     calculateColor = (area) => {
 
         if (!area.capacity_estimate) {
-            return "#CCCC00"
+            return "#CCCC00" //yellow
         }
 
         const ratio = area.current_parking_count / area.capacity_estimate;
-        if (ratio > 0.75) {
-            return "#CD0000"
-        } else {
-            return "#008000"
+        if (ratio === 1) {
+            return "#CD0000" //red
+        } else if(ratio > 0.5){
+            return "#CCCC00" //yellow
+        }
+        else {
+            return "#008000" //green
         }
 
 
