@@ -1,4 +1,3 @@
-
 const areas = [
     {
         id: 'ef44a2eb-57ad-4889-bc38-c713fc2d59e2',
@@ -66,8 +65,8 @@ const getAreas = () => {
     return areas
 }
 
-const getCloseTo = (lon, lat) => {
+const getAreasCloseTo = (lon, lat) => {
     return areas
 }
 
-export default { getAreas, getCloseTo }
+export default { getAreas, getAreasCloseTo }
